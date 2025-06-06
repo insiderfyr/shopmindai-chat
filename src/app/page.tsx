@@ -125,6 +125,8 @@ export default function ChatPage() {
   const [text, setText] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [discountsActive, setDiscountsActive] = useState(false)
+  const [dealsActive, setDealsActive] = useState(false)
 
   // Refs
   const textareaRef = useRef<HTMLTextAreaElement>(null)
@@ -562,13 +564,19 @@ export default function ChatPage() {
                 </div>
                 {/* Model Selector Buttons */}
                 <div className="absolute left-6 bottom-4 flex items-center gap-2">
-                  <button className="flex items-center gap-1.5 px-2.5 py-1.5 bg-white border border-gray-200 rounded-lg text-xs text-gray-600 hover:border-gray-300 hover:bg-gray-50 transition-colors">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    deepseekR1
+                  <button
+                    className={`flex items-center gap-1.5 px-2.5 py-1.5 border border-gray-200 rounded-xl text-xs transition-colors duration-200 ${discountsActive ? 'bg-blue-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
+                    onClick={() => setDiscountsActive((prev) => !prev)}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search-check-icon lucide-search-check"><path d="m8 11 2 2 4-4"/><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    Discounts Finder
                   </button>
-                  <button className="flex items-center gap-1.5 px-2.5 py-1.5 bg-white border border-gray-200 rounded-lg text-xs text-gray-600 hover:border-gray-300 hover:bg-gray-50 transition-colors">
-                    <Search className="w-3 h-3" />
-                    websearch
+                  <button
+                    className={`flex items-center gap-1.5 px-2.5 py-1.5 border border-gray-200 rounded-xl text-xs transition-colors duration-200 ${dealsActive ? 'bg-blue-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
+                    onClick={() => setDealsActive((prev) => !prev)}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-hourglass-icon lucide-hourglass"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg>
+                    Daily Deals
                   </button>
                 </div>
               </div>
@@ -586,9 +594,7 @@ export default function ChatPage() {
                   onClick={() => handleActionButton('Compare Products')}
                   className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-full text-sm text-gray-700 hover:border-[#4d8eff] hover:text-[#4d8eff] transition-colors duration-200 shadow-sm"
                 >
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17M17 13V19C17 19.6 16.6 20 16 20H8C7.4 20 7 19.6 7 19V13M9 19V13M15 19V13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shopping-bag-icon lucide-shopping-bag"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                   Compare Products
                 </button>
                 <button 
@@ -678,14 +684,20 @@ export default function ChatPage() {
                       </div>
                     </div>
                     {/* Model Selector Buttons */}
-                    <div className="absolute left-3 bottom-3 flex items-center gap-2">
-                      <button className="flex items-center gap-1.5 px-2.5 py-1.5 bg-white border border-gray-200 rounded-lg text-xs text-gray-600 hover:border-gray-300 hover:bg-gray-50 transition-colors">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        deepseekR1
+                    <div className="absolute left-6 bottom-4 flex items-center gap-2">
+                      <button
+                        className={`flex items-center gap-1.5 px-2.5 py-1.5 border border-gray-200 rounded-xl text-xs transition-colors duration-200 ${discountsActive ? 'bg-blue-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
+                        onClick={() => setDiscountsActive((prev) => !prev)}
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search-check-icon lucide-search-check"><path d="m8 11 2 2 4-4"/><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        Discounts Finder
                       </button>
-                      <button className="flex items-center gap-1.5 px-2.5 py-1.5 bg-white border border-gray-200 rounded-lg text-xs text-gray-600 hover:border-gray-300 hover:bg-gray-50 transition-colors">
-                        <Search className="w-3 h-3" />
-                        websearch
+                      <button
+                        className={`flex items-center gap-1.5 px-2.5 py-1.5 border border-gray-200 rounded-xl text-xs transition-colors duration-200 ${dealsActive ? 'bg-blue-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
+                        onClick={() => setDealsActive((prev) => !prev)}
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-hourglass-icon lucide-hourglass"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg>
+                        Daily Deals
                       </button>
                     </div>
                   </div>
